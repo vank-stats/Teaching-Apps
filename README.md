@@ -6,7 +6,7 @@ those apps online are below (when applicable).
 
 
 1. [Sampling method comparison](https://vank-stats.shinyapps.io/samplingcorn/)
-    - Description: This app is used to teach introductory statistics students about different methods of sampling.
+    - Description: This app is used to teach introductory statistics students about different methods of sampling. This is based on [this activity](http://inspire.stat.ucla.edu/unit_15/river.pdf). Students use simple random sampling and stratified sampling (by rows and by columns). When class results are compared, all three methods are equally good *on average*, but systematic sampling by column is by far the most consistent due to a pattern in the field. Students can type the word *census* at the bottom of the app to reveal the field's actual layout.
 
 2. [Distributions of different samples](https://vank-stats.shinyapps.io/samplehistograms/)
     - Description: This app allows students to see how samples of different sizes and from different populations will look as
