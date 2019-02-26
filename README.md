@@ -23,3 +23,6 @@ histograms or Q-Q plots. For example, a sample from a normal distribution won't 
 
 6. [Coverage of multiple confidence intervals](https://vank-stats.shinyapps.io/multiple_confidence_intervals/)
     - Description: This app is used to illustrate the need for a simultaneous confidence interval correction if looking at multiple confidence intervals.
+
+7. [Central Limit Theorem simulation](https://vank-stats.shinyapps.io/CLT-STS342/)
+    - Description: This app isused in a statistics theory course to indicate how quickly the distribution of sample means will look normal for a handful of different distributions.
