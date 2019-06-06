@@ -1,5 +1,7 @@
+# To do 
+#    - warning if things other than A-E entered
+
 library(shiny)
-library(dplyr)
 
 # Define the base yield of the field without fertilizer
 base_yield <- matrix(c(16, 17, 13, 17, 14, 
@@ -77,20 +79,20 @@ server <- function(input, output, session) {
                               rep("D", 5), rep("E", 5))), ncol = 5)
     }
     if(input$methodInput == "User-Defined") {
-      row1 <- if(input$row1Input == "") { rep("__", 5) } else {
-        c(toupper(unlist(strsplit(input$row1Input, ""))), rep("__", 5))[1:5]
+      row1 <- if(input$row1Input == "") { rep("___", 5) } else {
+        c(toupper(unlist(strsplit(input$row1Input, ""))), rep("___", 5))[1:5]
       }
-      row2 <- if(input$row2Input == "") { rep("__", 5) } else {
-        c(toupper(unlist(strsplit(input$row2Input, ""))), rep("__", 5))[1:5]
+      row2 <- if(input$row2Input == "") { rep("___", 5) } else {
+        c(toupper(unlist(strsplit(input$row2Input, ""))), rep("___", 5))[1:5]
       }
-      row3 <- if(input$row3Input == "") { rep("__", 5) } else {
-        c(toupper(unlist(strsplit(input$row3Input, ""))), rep("__", 5))[1:5]
+      row3 <- if(input$row3Input == "") { rep("___", 5) } else {
+        c(toupper(unlist(strsplit(input$row3Input, ""))), rep("___", 5))[1:5]
       }
-      row4 <- if(input$row4Input == "") { rep("__", 5) } else {
-        c(toupper(unlist(strsplit(input$row4Input, ""))), rep("__", 5))[1:5]
+      row4 <- if(input$row4Input == "") { rep("___", 5) } else {
+        c(toupper(unlist(strsplit(input$row4Input, ""))), rep("___", 5))[1:5]
       }
-      row5 <- if(input$row5Input == "") { rep("__", 5) } else {
-        c(toupper(unlist(strsplit(input$row5Input, ""))), rep("__", 5))[1:5]
+      row5 <- if(input$row5Input == "") { rep("___", 5) } else {
+        c(toupper(unlist(strsplit(input$row5Input, ""))), rep("___", 5))[1:5]
       }
       trts <- matrix(rbind(row1, row2, row3, row4, row5), ncol = 5)
     }
@@ -108,48 +110,40 @@ server <- function(input, output, session) {
   
   output$treatmentAssignment <- renderTable({
     trt_matrix()
-  })
+  }, bordered = TRUE, colnames = FALSE, width = "200", align = "c")
   
   output$harvest <- renderTable({
-    if(is.null(trt_matrix())) {return("The yield of your harvest will appear
-                                      here once all treatment assignments have
-                                      been specified.")}
     yield()
-  })
+  }, digits = 0, align = "r", bordered = TRUE, colnames = FALSE, width = "200")
   
   output$grand_ave <- renderText({
-    grand <- mean(yield())
-    paste("The grand mean is: ", grand)
+    grand <- mean(yield(), na.rm = TRUE)
+    paste("The grand mean is: ", round(grand, 2))
   })
   
   output$A_ave <- renderText({
-    if(is.null(trt_matrix())) {return()}
     a_mean <- mean(yield()[trt_matrix() == "A"])
-    paste("The fertilizer A mean is: ", a_mean)
+    paste("The fertilizer A mean is: ", round(a_mean, 2))
   })
   
   output$B_ave <- renderText({
-    if(is.null(trt_matrix())) {return()}
     b_mean <- mean(yield()[trt_matrix() == "B"])
-    paste("The fertilizer B mean is: ", b_mean)
+    paste("The fertilizer B mean is: ", round(b_mean, 2))
   })
   
   output$C_ave <- renderText({
-    if(is.null(trt_matrix())) {return()}
     c_mean <- mean(yield()[trt_matrix() == "C"])
-    paste("The fertilizer C mean is: ", c_mean)
+    paste("The fertilizer C mean is: ", round(c_mean, 2))
   })
   
   output$D_ave <- renderText({
-    if(is.null(trt_matrix())) {return()}
     d_mean <- mean(yield()[trt_matrix() == "D"])
-    paste("The fertilizer D mean is: ", d_mean)
+    paste("The fertilizer D mean is: ", round(d_mean, 2))
   })
   
   output$E_ave <- renderText({
-    if(is.null(trt_matrix())) {return()}
     e_mean <- mean(yield()[trt_matrix() == "E"])
-    paste("The fertilizer E mean is: ", e_mean)
+    paste("The fertilizer E mean is: ", round(e_mean, 2))
   })
 }
 
