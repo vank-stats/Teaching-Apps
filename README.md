@@ -27,5 +27,5 @@ histograms or Q-Q plots. For example, a sample from a normal distribution won't 
 7. [Central Limit Theorem simulation](https://vank-stats.shinyapps.io/CLT-STS342/)
     - Description: This app is used in a statistics theory course to indicate how quickly the distribution of sample means will look normal for a handful of different distributions.
 
-8. [Interaction Graphs and Effects] (https://vank-stats.shinyapps.io/InteractionGraphs/)
+8. [Interaction Graphs and Effects](https://vank-stats.shinyapps.io/InteractionGraphs/)
     - Description: This app is used in a design of experiments course to help students build intuition when reading interaction graphs. For example,  just because lines are parallel doesn't mean no interaction and just because lines cross doesn't mean there is an interaction.
