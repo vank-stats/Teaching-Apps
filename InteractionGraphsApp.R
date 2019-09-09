@@ -96,11 +96,13 @@ server <- function(input, output) {
   output$intPlot <- renderPlot({
     
     ggplot(df(), aes(x = factora, y = response, color = factorb)) + 
-      geom_point(size = 3, alpha = .6) +
+      geom_jitter(size = 4, alpha = .7, height = 0, width = .01) +
       geom_line(data = df_means(), aes(x = factora, y = response, group = factorb,
-                                       linetype = factorb)) +
-      scale_colour_manual(values = c("red4", "darkgoldenrod1")) +
-      theme_classic()
+                                       linetype = factorb), size = 1.5) +
+      scale_colour_manual(values = c("#FFBC42", "#872332")) +
+      theme_classic(base_size = 15) +
+      labs(x = "Factor A", y = "Response", color = "Factor B") +
+      guides(linetype = FALSE)
   })
   
   # Print the ANOVA table
